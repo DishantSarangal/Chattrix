@@ -1,0 +1,156 @@
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1A202C;
+  }
+  
+  /* Header */
+  .header {
+    background-color: #2D3748;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header .h2 {
+    color: #38C585;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  
+  .header button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #38C585;
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .header button:hover {
+    background-color: white;
+    color: #38C585;
+  }
+  
+  .Phone {
+    fill: white;
+  }
+  
+  /* Main Container */
+  .container {
+    background-color: #2D3748;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Welcome Text */
+  .Welcome-msg {
+    color: white;
+    text-align: center;
+  }
+  
+  .Welcome-msg h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .Welcome-msg p {
+    font-size: 0.95rem;
+    color: #CBD5E0;
+  }
+  
+  /* Form Styling */
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .inputs label {
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .inputs input[type="email"] {
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #EDF2F7;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .inputs input[type="submit"] {
+    background-color: #38C585;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .inputs input[type="submit"]:hover {
+    background-color: #2bbf75;
+  }
+  
+  .inputs input[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Error Messages */
+  .red {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-top: -0.4rem;
+  }
+  
+  /* Loading State */
+  .loading {
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 500px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+  
+    .header button {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .container {
+      width: 90vw;
+      padding: 1.5rem;
+    }
+  }
+  
