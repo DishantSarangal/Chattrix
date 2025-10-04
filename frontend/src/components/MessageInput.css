@@ -1,0 +1,124 @@
+/* Define theme colors using CSS variables */
+:root {
+    --base-300: #e5e6e6;
+    --zinc-400: #9ca3af;
+    --zinc-700: #3f3f46;
+    --emerald-500: #10b981;
+  }
+  
+  /* Main container for the input area */
+  .message-input-container {
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Image Preview Styles */
+  .image-preview-wrapper {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .image-preview {
+    position: relative;
+  }
+  
+  .preview-img {
+    width: 5rem; /* 80px */
+    height: 5rem; /* 80px */
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 1px solid var(--zinc-700);
+  }
+  
+  .remove-image-btn {
+    position: absolute;
+    top: -0.375rem; /* -6px */
+    right: -0.375rem; /* -6px */
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    border-radius: 9999px;
+    background-color: var(--base-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Form Styles */
+  .message-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .input-group {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .text-input {
+    width: 100%;
+    border: 1px solid var(--base-300);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+  }
+  
+  /* File input is visually hidden but accessible */
+  .file-input {
+    display: none;
+  }
+  
+  /* Action Buttons (Upload and Send) */
+  .image-upload-btn,
+  .send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--base-300);
+    background-color: transparent;
+    border-radius: 9999px; /* circle */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .image-upload-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--zinc-400);
+    display: none; /* Hidden on small screens by default */
+  }
+  
+  .image-upload-btn.active {
+    color: var(--emerald-500);
+  }
+  
+  .send-btn {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--primary, #570df8);
+    color: white;
+    border: none;
+  }
+  
+  .send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive styles */
+  @media (min-width: 640px) {
+    .text-input {
+      padding: 0.75rem 1rem; /* Taller input on larger screens */
+    }
+  
+    .image-upload-btn {
+      display: flex; /* Show image upload button on larger screens */
+    }
+  }

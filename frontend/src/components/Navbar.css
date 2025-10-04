@@ -1,0 +1,117 @@
+/* Define theme colors using CSS variables */
+:root {
+    --primary: #570df8;
+    --base-100: #ffffff;
+    --base-300: #e5e6e6;
+  }
+  
+  /* Main header styles */
+  .navbar-header {
+    background-color: rgba(255, 255, 255, 0.8); /* Corresponds to bg-base-100/80 */
+    border-bottom: 1px solid var(--base-300);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(10px); /* Corresponds to backdrop-blur-lg */
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .navbar-container {
+    max-width: 80rem; /* A standard container width */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 4rem; /* 64px */
+  }
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  /* Left side - Logo */
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem; /* 10px */
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 200ms ease-in-out;
+  }
+  
+  .logo-link:hover {
+    opacity: 0.8;
+  }
+  
+  .logo-icon-wrapper {
+    width: 2.25rem; /* 36px */
+    height: 2.25rem; /* 36px */
+    border-radius: 0.5rem;
+    background-color: color-mix(in srgb, var(--primary), transparent 90%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-icon {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    color: var(--primary);
+  }
+  
+  .logo-text {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 700;
+  }
+  
+  /* Right side - Navigation buttons */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+  }
+  
+  .nav-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem; /* Small button padding */
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    font-size: 0.875rem; /* 14px */
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+  }
+  
+  .nav-button:hover {
+    background-color: #f3f4f6; /* A light gray for hover */
+  }
+  
+  .nav-icon {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+  }
+  
+  .nav-icon.small {
+    width: 1rem; /* 16px */
+    height: 1rem; /* 16px */
+  }
+  
+  /* Responsive styles for button text */
+  @media (max-width: 640px) {
+    .nav-text {
+      display: none;
+    }
+  }

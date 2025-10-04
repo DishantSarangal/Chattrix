@@ -1,0 +1,77 @@
+/* Define theme colors using CSS variables */
+:root {
+    --base-300: #e5e6e6; /* Border color */
+    --base-content: #1f2937; /* Main text color */
+    --online-status-color: #22c55e;
+  }
+  
+  /* Main container for the header */
+  .chat-header-container {
+    padding: 0.625rem; /* 10px */
+    border-bottom: 1px solid var(--base-300);
+  }
+  
+  .chat-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* User information section (avatar and text) */
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px */
+  }
+  
+  /* Avatar styles */
+  .user-avatar-wrapper {
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    border-radius: 9999px; /* Full circle */
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .user-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* User name and status */
+  .user-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-name {
+    font-weight: 500;
+    color: var(--base-content);
+  }
+  
+  .user-status {
+    font-size: 0.875rem; /* 14px */
+    color: color-mix(in srgb, var(--base-content), transparent 30%);
+  }
+  
+  .user-status.online {
+    color: var(--online-status-color);
+  }
+  
+  /* Close button */
+  .close-chat-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 150ms ease-in-out;
+  }
+  
+  .close-chat-btn:hover {
+    background-color: #f3f4f6; /* Light gray background on hover */
+  }

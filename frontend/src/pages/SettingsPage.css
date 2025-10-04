@@ -1,0 +1,298 @@
+/* Define theme colors using CSS variables. 
+  Your theme switching logic should change these variables,
+  likely by setting a data-theme attribute on the <html> tag.
+*/
+:root, [data-theme="light"] {
+    --primary: #570df8;
+    --primary-content: #ffffff;
+    --secondary: #f000b8;
+    --accent: #37cdbe;
+    --neutral: #3d4451;
+    --base-100: #ffffff;
+    --base-200: #f2f2f2;
+    --base-300: #e5e6e6;
+    --base-content: #1f2937;
+  }
+  
+  /* Example of a dark theme */
+  [data-theme="dark"] {
+    --primary: #793ef9;
+    --primary-content: #ffffff;
+    --secondary: #f000b8;
+    --accent: #37cdbe;
+    --neutral: #191d24;
+    --base-100: #2a323c;
+    --base-200: #242933;
+    --base-300: #20252e;
+    --base-content: #a6adbb;
+  }
+  
+  /* General Layout */
+  .settings-container {
+    height: 100vh;
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5rem 1rem 0 1rem;
+  }
+  
+  .settings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  .section-description {
+    font-size: 0.875rem;
+    color: color-mix(in srgb, var(--base-content), transparent 30%);
+  }
+  
+  /* Theme Selection */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .theme-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 150ms ease-in-out;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .theme-button:hover {
+    background-color: color-mix(in srgb, var(--base-200), transparent 50%);
+  }
+  
+  .theme-button.active {
+    background-color: var(--base-200);
+  }
+  
+  .theme-swatch {
+    position: relative;
+    height: 2rem;
+    width: 100%;
+    border-radius: 0.375rem;
+    overflow: hidden;
+  }
+  
+  .theme-swatch-colors {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    padding: 0.25rem;
+  }
+  
+  .swatch-color {
+    border-radius: 0.25rem;
+  }
+  
+  /* These classes are for the individual swatches to show their theme's colors */
+  [data-theme] .swatch-primary { background-color: var(--primary); }
+  [data-theme] .swatch-secondary { background-color: var(--secondary); }
+  [data-theme] .swatch-accent { background-color: var(--accent); }
+  [data-theme] .swatch-neutral { background-color: var(--neutral); }
+  
+  .theme-name {
+    font-size: 11px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Preview Section */
+  .preview-container {
+    border-radius: 0.75rem;
+    border: 1px solid var(--base-300);
+    overflow: hidden;
+    background-color: var(--base-100);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  }
+  
+  .preview-background {
+    padding: 1rem;
+    background-color: var(--base-200);
+  }
+  
+  .preview-wrapper {
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Mock Chat UI */
+  .mock-chat {
+    background-color: var(--base-100);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    overflow: hidden;
+    color: var(--base-content);
+  }
+  
+  .mock-chat-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--base-300);
+    background-color: var(--base-100);
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .user-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background-color: var(--primary);
+    color: var(--primary-content);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  
+  .user-name {
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  .user-status {
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--base-content), transparent 30%);
+  }
+  
+  .messages-area {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: var(--base-100);
+  }
+  
+  .message-row {
+    display: flex;
+  }
+  
+  .message-row.sent {
+    justify-content: flex-end;
+  }
+  
+  .message-row.received {
+    justify-content: flex-start;
+  }
+  
+  .message-bubble {
+    max-width: 80%;
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+  }
+  
+  .sent-bubble {
+    background-color: var(--primary);
+    color: var(--primary-content);
+  }
+  
+  .received-bubble {
+    background-color: var(--base-200);
+  }
+  
+  .message-text {
+    font-size: 0.875rem;
+  }
+  
+  .message-timestamp {
+    font-size: 10px;
+    margin-top: 0.375rem;
+  }
+  
+  .sent-time {
+    color: color-mix(in srgb, var(--primary-content), transparent 30%);
+  }
+  
+  .received-time {
+    color: color-mix(in srgb, var(--base-content), transparent 30%);
+  }
+  
+  .mock-chat-input-area {
+    padding: 1rem;
+    border-top: 1px solid var(--base-300);
+    background-color: var(--base-100);
+  }
+  
+  .input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .message-input {
+    flex: 1 1 0%;
+    height: 2.5rem;
+    font-size: 0.875rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--base-300);
+    border-radius: 0.5rem;
+    background-color: var(--base-100);
+    color: var(--base-content);
+  }
+  .message-input:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-color: var(--primary);
+  }
+  
+  
+  .send-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    background-color: var(--primary);
+    color: var(--primary-content);
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Responsive Grid for Themes */
+  @media (min-width: 640px) {
+    .theme-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .theme-grid {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }

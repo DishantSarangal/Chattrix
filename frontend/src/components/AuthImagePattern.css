@@ -1,0 +1,63 @@
+/* Define theme colors using CSS variables */
+:root {
+    --primary: #570df8;
+    --base-200: #f2f2f2;
+    --base-content: #1f2937;
+  }
+  
+  /* Keyframes for the pulse animation */
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Main container, hidden by default */
+  .auth-pattern-container {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--base-200);
+    padding: 3rem;
+  }
+  
+  /* Show the container on large screens */
+  @media (min-width: 1024px) {
+    .auth-pattern-container {
+      display: flex;
+    }
+  }
+  
+  .auth-pattern-content {
+    max-width: 28rem; /* 448px */
+    text-align: center;
+  }
+  
+  /* Grid for the pattern */
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem; /* 12px */
+    margin-bottom: 2rem;
+  }
+  
+  .pattern-square {
+    aspect-ratio: 1 / 1; /* Creates a perfect square */
+    border-radius: 1rem; /* 16px */
+    background-color: color-mix(in srgb, var(--primary), transparent 90%);
+  }
+  
+  .pattern-square.pulse-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Text styles */
+  .pattern-title {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .pattern-subtitle {
+    color: color-mix(in srgb, var(--base-content), transparent 40%);
+  }
