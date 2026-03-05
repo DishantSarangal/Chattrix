@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import { generateKeyPair } from "../lib/encryption";
 import AuthImagePattern from "../components/AuthImagePattern";
 import toast from "react-hot-toast";
+
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,12 +27,20 @@ const SignUpPage = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const success = validateForm();
-
-    if (success === true) signup(formData);
+    if (!success) return;
+  
+    const { publicKey, privateKey } = generateKeyPair();
+  
+    localStorage.setItem("privateKey", privateKey);
+  
+    await signup({
+      ...formData,
+      publicKey
+    });
   };
 
   return (

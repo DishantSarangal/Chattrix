@@ -37,7 +37,7 @@ export const getMessages = async (req, res) => {
 
 export const sendMessage = async (req, res) => {
   try {
-    const { text, image } = req.body;
+    const { encryptedText, nonce, image } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
@@ -51,16 +51,23 @@ export const sendMessage = async (req, res) => {
     const newMessage = new Message({
       senderId,
       receiverId,
-      text,
+      encryptedText,
+      nonce,
       image: imageUrl,
     });
 
     await newMessage.save();
 
     const receiverSocketId = getReceiverSocketId(receiverId);
-    if (receiverSocketId) {
-      io.to(receiverSocketId).emit("newMessage", newMessage);
-    }
+
+if (receiverSocketId) {
+  const sender = await User.findById(senderId).select("publicKey");
+
+  io.to(receiverSocketId).emit("newMessage", {
+    ...newMessage._doc,
+    senderPublicKey: sender.publicKey,
+  });
+}
 
     res.status(201).json(newMessage);
   } catch (error) {

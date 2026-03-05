@@ -1,6 +1,6 @@
 import { useChatStore } from "../store/useChatStore";
 import { useEffect, useRef } from "react";
-
+import { decryptMessage } from "../lib/encryption";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
 import MessageSkeleton from "./skeletons/MessageSkeleton";
@@ -18,7 +18,7 @@ const ChatContainer = () => {
   } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
-
+  const privateKey = localStorage.getItem("privateKey");
   useEffect(() => {
     getMessages(selectedUser._id);
 
@@ -79,7 +79,27 @@ const ChatContainer = () => {
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
-              {message.text && <p>{message.text}</p>}
+           {message.encryptedText && (
+  <p>
+    {(() => {
+      const otherUserPublicKey =
+        message.senderId === authUser._id
+          ? selectedUser.publicKey
+          : selectedUser.publicKey;
+
+      try {
+        return decryptMessage(
+          message.encryptedText,
+          message.nonce,
+          otherUserPublicKey,
+          privateKey
+        );
+      } catch (err) {
+        return "[Unable to decrypt]";
+      }
+    })()}
+  </p>
+)}
             </div>
           </div>
         ))}

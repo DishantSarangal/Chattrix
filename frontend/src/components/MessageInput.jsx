@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
+import { encryptMessage } from "../lib/encryption";
 import { useChatStore } from "../store/useChatStore";
+
 import { Image, Send, X } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -7,7 +9,7 @@ const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { sendMessage } = useChatStore();
+  const { sendMessage, selectedUser } = useChatStore();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -27,16 +29,37 @@ const MessageInput = () => {
     setImagePreview(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
-
+ 
   const handleSendMessage = async (e) => {
     e.preventDefault();
+    console.log("MESSAGE:", text.trim());
+    console.log("RECEIVER PUBLIC KEY:", selectedUser.publicKey);
+    console.log("PRIVATE KEY:", localStorage.getItem("privateKey"));
     if (!text.trim() && !imagePreview) return;
 
     try {
-      await sendMessage({
-        text: text.trim(),
-        image: imagePreview,
-      });
+      const privateKey = localStorage.getItem("privateKey");
+
+let encryptedPayload = {};
+
+if (text.trim()) {
+
+  const encrypted = encryptMessage(
+    text.trim(),
+    selectedUser.publicKey,
+    privateKey
+  );
+
+  encryptedPayload = {
+    encryptedText: encrypted.encryptedText,
+    nonce: encrypted.nonce,
+  };
+}
+
+await sendMessage({
+  ...encryptedPayload,
+  image: imagePreview,
+});
 
       // Clear form
       setText("");
